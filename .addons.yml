@@ -1,0 +1,5 @@
+channel: stable
+addons:
+  dokuwiki:
+    repository: IceOnly/HA-DokuWiki
+    target: dokuwiki

@@ -1,0 +1,29 @@
+name: "DokuWiki"
+version: "0.0.40"
+slug: "doku_wiki"
+description: "DokuWiki is a simple to use wiki software"
+ingress: true
+ingress_stream: true
+startup: system
+init: false
+panel_icon: mdi:file-sign
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+map:
+  - share:rw
+options:
+  title: 'DokuWiki'
+  start: 'start'
+  lang: 'en'
+  template: 'dokuwiki'
+  tagline: ''
+schema:
+  title: str
+  start: str
+  lang: str
+  template: str
+  tagline: str

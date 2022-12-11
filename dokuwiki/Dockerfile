@@ -1,0 +1,53 @@
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:12.2.3
+# hadolint ignore=DL3006
+FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Setup base
+# hadolint ignore=DL3003
+RUN \
+    apk add --no-cache \
+        nginx \
+        php8-fpm \
+        php8-xml \
+        php8-session \
+        php8 \
+    \
+    && rm -r -f /etc/nginx \
+    && mkdir /dokuwiki \
+    && curl -L -s \
+        "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-2022-07-31a.tgz" \
+        | tar zxvf - --strip 1 -C /dokuwiki
+    
+# Copy root filesystem
+COPY rootfs /
+
+RUN chmod -R 777 /dokuwiki 
+
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_DESCRIPTION
+ARG BUILD_NAME
+ARG BUILD_REF
+ARG BUILD_REPOSITORY
+ARG BUILD_VERSION
+
+# Labels
+LABEL \
+    io.hass.name="${BUILD_NAME}" \
+    io.hass.description="${BUILD_DESCRIPTION}" \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="Thomas Williamson <iceonly@gmail.com>" \
+    org.opencontainers.image.title="${BUILD_NAME}" \
+    org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
+    org.opencontainers.image.vendor="IceOnly" \
+    org.opencontainers.image.authors="Thomas Williamson <iceonly@gmail.com>" \
+    org.opencontainers.image.licenses="GPL2" \
+    org.opencontainers.image.created=${BUILD_DATE} \
+    org.opencontainers.image.revision=${BUILD_REF} \
+    org.opencontainers.image.version=${BUILD_VERSION}
