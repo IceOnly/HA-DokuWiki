@@ -24,7 +24,9 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
-RUN chmod -R 777 /dokuwiki 
+RUN \
+    chmod -R 777 /dokuwiki \
+    && chmod 777 /etc/cont-init.d/dokuwiki.sh
 
 # Build arguments
 ARG BUILD_ARCH
