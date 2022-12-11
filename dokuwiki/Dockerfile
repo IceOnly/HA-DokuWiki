@@ -26,6 +26,7 @@ COPY rootfs /
 
 RUN \
     chmod -R 777 /dokuwiki \
+    && chmod -R 777 /etc/services.d/ \
     && chmod 777 /etc/cont-init.d/dokuwiki.sh
 
 # Build arguments
