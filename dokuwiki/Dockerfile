@@ -10,15 +10,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apk add --no-cache \
         nginx \
-        php8-fpm \
-        php8-xml \
-        php8-session \
-        php8 \
+        php82-fpm \
+        php82-xml \
+        php82-session \
+        php82 \
     \
     && rm -r -f /etc/nginx \
     && mkdir /dokuwiki \
     && curl -L -s \
-        "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-2022-07-31a.tgz" \
+        "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-2025-05-14a.tgz" \
         | tar zxvf - --strip 1 -C /dokuwiki
     
 # Copy root filesystem
@@ -26,7 +26,6 @@ COPY rootfs /
 
 RUN \
     chmod -R 777 /dokuwiki \
-    && chmod -R 777 /etc/services.d/ \
     && chmod 777 /etc/cont-init.d/dokuwiki.sh
 
 # Build arguments

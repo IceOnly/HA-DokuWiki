@@ -1,5 +1,5 @@
 name: "DokuWiki"
-version: "0.0.41"
+version: "0.0.42"
 slug: "doku_wiki"
 description: "DokuWiki is a simple to use wiki software"
 ingress: true
