@@ -18,7 +18,7 @@ RUN \
     && rm -r -f /etc/nginx \
     && mkdir /dokuwiki \
     && curl -L -s \
-        "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-2025-05-14a.tgz" \
+        "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-2025-05-14b.tgz" \
         | tar zxvf - --strip 1 -C /dokuwiki
     
 # Copy root filesystem
