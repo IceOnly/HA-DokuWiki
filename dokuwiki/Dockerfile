@@ -10,10 +10,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apk add --no-cache \
         nginx \
-        php82-fpm \
-        php82-xml \
-        php82-session \
-        php82 \
+        php83-fpm \
+        php83-xml \
+        php83-session \
+        php83 \
     \
     && rm -r -f /etc/nginx \
     && mkdir /dokuwiki \
